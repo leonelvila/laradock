@@ -1890,8 +1890,8 @@ USER root
 
 # Leo: install requires for vendors
 RUN apt-get update && \
-    apt-get full-upgrade && \
-    apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+    apt-get full-upgrade -y && \
+    apt-get install -y build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
 
 # Clean up
 RUN apt-get clean && \
