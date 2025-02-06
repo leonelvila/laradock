@@ -1888,6 +1888,11 @@ RUN if [ ${INSTALL_GITHUB_CLI} = true ]; then \
 
 USER root
 
+# Leo: install requires for vendors
+RUN apt-get update && \
+    apt-get full-upgrade && \
+    apt-get install build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
+
 # Clean up
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \

@@ -1,6 +1,21 @@
 services:
+  workspace:
+    volumes:
+      - vendors-docker-sync:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
+      - docker-in-docker:/certs/client
+      - ./php-worker/supervisord.d:/etc/supervisord.d
+  nginx:
+    volumes:
+      - vendors-docker-sync:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
+      - ${NGINX_HOST_LOG_PATH}:/var/log/nginx
+      - ${NGINX_SITES_PATH}:/etc/nginx/sites-available
+      - ${NGINX_SSL_PATH}:/etc/nginx/ssl
+  php-fpm:
+    volumes:
+      - ./php-fpm/php${PHP_VERSION}.ini:/usr/local/etc/php/php.ini
+      - vendors-docker-sync:${APP_CODE_PATH_CONTAINER}${APP_CODE_CONTAINER_FLAG}
+      - docker-in-docker:/certs/client
 
 volumes:
-  applications-sync:
-    external:
-      name: "applications-docker-sync"
+  vendors-docker-sync:
+    external: true
