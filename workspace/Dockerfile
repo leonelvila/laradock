@@ -1199,12 +1199,12 @@ RUN if [ ${INSTALL_SYMFONY} = true ]; then \
 ARG INSTALL_PYTHON=false
 
 RUN if [ ${INSTALL_PYTHON} = true ]; then \
-  apt-get -y install python python-dev build-essential  \
+  apt-get -y install python2 python2-dev build-essential  \
   && curl https://bootstrap.pypa.io/pip/2.7/get-pip.py -o get-pip.py  \
-  && python get-pip.py  \
+  && python2 get-pip.py  \
   && rm get-pip.py  \
-  && python -m pip install --upgrade pip  \
-  && python -m pip install --upgrade virtualenv \
+  && python2 -m pip install --upgrade pip  \
+  && python2 -m pip install --upgrade virtualenv \
 ;fi
 
 ###########################################################################
